@@ -3,6 +3,9 @@
  */
 package main;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,11 +19,7 @@ import javax.imageio.ImageIO;
  */
 public class Squeegee1 {
 
-	Random rand = new Random();
-
-	public Squeegee1() {
-		rand = new Random();// TODO Auto-generated constructor stub
-	}
+	static Random rand = new Random();
 
 	/**
 	 * @param args
@@ -28,13 +27,28 @@ public class Squeegee1 {
 	 */
 	public static void main(String[] args) throws IOException {
 
+		rand = new Random();
 		BufferedImage im = new BufferedImage(1000, 1000,
 				BufferedImage.TYPE_INT_RGB);
 
-		SemicircularPath
-		
-		
-		
+		Graphics2D g = im.createGraphics();
+
+		SemicircularPath sem = new SemicircularPath(1000, 1000, 500, 500, 1,
+				1.0, 0.2, 90);
+
+		for (int i = 0; i < 10000; i++) {
+			g.setColor(Color.BLUE);
+			Point p = sem.update(10);
+
+			g.fillOval((int) p.getX(), (int) p.getY(), 50, 50);
+
+			g.setColor(Color.WHITE);
+			p = sem.update(10);
+
+			g.fillOval((int) p.getX(), (int) p.getY(), 50, 50);
+
+		}
+
 		File outputfile = new File("C:\\Users\\Maximilian\\Desktop\\image.png");
 		ImageIO.write(im, "png", outputfile);
 
