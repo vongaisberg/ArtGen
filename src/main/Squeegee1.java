@@ -35,17 +35,16 @@ public class Squeegee1 {
 
 		SemicircularPath sem = new SemicircularPath(1000, 1000, 500, 500, 1,
 				1.0, 0.2, 90);
-
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 20000; i++) {
+			System.out.println(i);
 			g.setColor(Color.BLUE);
 			Point p = sem.update(10);
-
-			g.fillOval((int) p.getX(), (int) p.getY(), 50, 50);
+			g.fillOval((int) p.getX(), (int) p.getY(), 100, 100);
 
 			g.setColor(Color.WHITE);
 			p = sem.update(10);
 
-			g.fillOval((int) p.getX(), (int) p.getY(), 50, 50);
+			g.fillOval((int) p.getX(), (int) p.getY(), 100, 100);
 
 		}
 
