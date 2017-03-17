@@ -1,6 +1,3 @@
-/**
- * 
- */
 package main;
 
 import java.awt.Color;
@@ -25,28 +22,20 @@ public class Colors {
 
 	}
 
-	static Color getColor(BufferedImage bi, int x, int y) {
-
-		if (x < 0 || y < 0 || x >= sizex || y >= sizey)
-			return Color.BLACK;
-
-		Color ret = new Color(bi.getRGB(x, y));
-
-		return ret;
-
+	static Color getColor(BufferedImage i, int x, int y) {
+		return x < 0 || y < 0 || x >= sizex || y >= sizey ? Color.BLACK : new Color(i.getRGB(x, y));
 	}
 
 	static Color random() {
-		return new Color((int) (Math.random() * 0x1000000));
+		return new Color((int) (0x1000000 * Math.random()));
 
 	}
 
 	static Color flatColor(Color c, Color d, int e) {
 
 		Color[] c2 = new Color[e];
-		for (int i = 1; i < e; i++) {
+		for (int i = 1; i < e; ++i)
 			c2[i] = d;
-		}
 		c2[0] = c;
 		return getAverage(c2);
 
@@ -54,45 +43,34 @@ public class Colors {
 
 	static Color getAverage(Color[] c1) {
 
-		int red = 0;
-		int green = 0;
-		int blue = 0;
-
+		int red = 0, green = 0, blue = 0;
 		for (Color color : c1) {
 			red += color.getRed();
 			green += color.getGreen();
 			blue += color.getBlue();
 		}
 
-		red = red / c1.length;
-		green = green / c1.length;
-		blue = blue / c1.length;
+		red /= c1.length;
+		green /= c1.length;
+		blue /= c1.length;
 
 		return new Color(red, green, blue);
 
 	}
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 		rand = new Random();
 		BufferedImage im = new BufferedImage(sizex, sizey,
 				BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = (Graphics2D) im.getGraphics();
 
-		for (int i = 0; i < 300; i = i + 10) {
-			int f = random().getRGB();
+		for (int i = 0; i < 300; i += 10)
+			for (int e = i; e < (i + 10); ++e)
+				im.setRGB(0, e, random().getRGB());
 
-			for (int e = i; e < (i + 10); e++) {
-				im.setRGB(0, e, f);
-			}
-		}
-
-		for (int x = 1; x < sizex; x++) {
+		for (int x = 1; x < sizex; ++x) {
 			System.out.println(x);
-			for (int y = 1; y < sizey; y++) {
+			for (int y = 1; y < sizey; ++y) {
 
 				Color[] mix = new Color[9];
 				mix[0] = getColor(im, x - 1, y - 1);
@@ -111,8 +89,7 @@ public class Colors {
 			}
 		}
 
-		File outputfile = new File("C:\\Users\\Maximilian\\Desktop\\image.png");
-		ImageIO.write(im, "png", outputfile);
+		ImageIO.write(im, "png", new File("C:\\Users\\Maximilian\\Desktop\\image.png"));
 
 	}
 }

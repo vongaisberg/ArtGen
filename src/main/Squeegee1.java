@@ -1,6 +1,3 @@
-/**
- * 
- */
 package main;
 
 import java.awt.Color;
@@ -21,10 +18,6 @@ public class Squeegee1 {
 
 	static Random rand = new Random();
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 
 		rand = new Random();
@@ -35,7 +28,7 @@ public class Squeegee1 {
 
 		SemicircularPath sem = new SemicircularPath(1000, 1000, 500, 500, 1,
 				1.0, 0.2, 90);
-		for (int i = 0; i < 20000; i++) {
+		for (int i = 0; i < 20000; ++i) {
 			System.out.println(i);
 			g.setColor(Color.BLUE);
 			Point p = sem.update(10);
@@ -48,8 +41,7 @@ public class Squeegee1 {
 
 		}
 
-		File outputfile = new File("C:\\Users\\Maximilian\\Desktop\\image.png");
-		ImageIO.write(im, "png", outputfile);
+		ImageIO.write(im, "png", new File("C:\\Users\\Maximilian\\Desktop\\image.png"));
 
 	}
 

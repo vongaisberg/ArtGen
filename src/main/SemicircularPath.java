@@ -1,6 +1,3 @@
-/**
- * 
- */
 package main;
 
 import java.awt.Color;
@@ -37,17 +34,14 @@ public class SemicircularPath {
 	}
 
 	public Point update(int res) {
-		for (int i = 0; i < res; i++) {
-			double additionX = Math.sin(angle) * speed;
-			double additionY = Math.cos(angle) * speed;
-
+		for (int i = 0; i < res; ++i) {
+			double additionX = speed * Math.sin(angle), additionY = speed * Math.cos(angle);
 			posX += additionX;
 			posY += additionY;
 
 			angle += angularSpeed;
 
-			angularSpeed = rand.nextDouble() * angularAcceleration
-					- (angularAcceleration / 2);
+			angularSpeed = angularAcceleration * rand.nextDouble() - angularAcceleration / 2;
 
 			if (posX < 0 || posY < 0 || posX > sizeX || posY > sizeY) {
 				posX -= additionX;
@@ -71,14 +65,13 @@ public class SemicircularPath {
 		SemicircularPath sem = new SemicircularPath(1000, 1000, 500, 500, 1,
 				1.0, 0.2, 90);
 
-		for (int i = 0; i < 100000; i++) {
+		for (int i = 0; i < 100000; ++i) {
 			System.out.println(i);
 			Point p = sem.update(1);
 			im.setRGB((int) p.getX(), (int) p.getY(), Color.RED.getRGB());
 		}
 
-		File outputfile = new File("C:\\Users\\Maximilian\\Desktop\\image.png");
-		ImageIO.write(im, "png", outputfile);
+		ImageIO.write(im, "png", new File("C:\\Users\\Maximilian\\Desktop\\image.png"));
 	}
 
 }

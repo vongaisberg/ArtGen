@@ -1,6 +1,3 @@
-/**
- * 
- */
 package main;
 
 import java.awt.Color;
@@ -21,10 +18,6 @@ public class Squeegee2 {
 
 	static Random rand = new Random();
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 
 		rand = new Random();
@@ -33,15 +26,11 @@ public class Squeegee2 {
 
 		Graphics2D g = im.createGraphics();
 
-		SemicircularPath sem = new SemicircularPath(2000, 2000, 500, 500, 1,
-				1.0, 0.15, 90);
-		SemicircularPath sem2 = new SemicircularPath(2000, 2000, 500, 500, 1,
-				1.0, 0.15, 90);
-		SemicircularPath sem3 = new SemicircularPath(2000, 2000, 500, 500, 1,
-				1.0, 0.15, 90);
-		SemicircularPath sem4 = new SemicircularPath(2000, 2000, 500, 500, 1,
-				1.0, 0.15, 90);
-		for (int i = 0; i < 40000; i++) {
+		SemicircularPath sem = new SemicircularPath(2000, 2000, 500, 500, 1, 1.0, 0.15, 90),
+				sem2 = new SemicircularPath(2000, 2000, 500, 500, 1, 1.0, 0.15, 90),
+				sem3 = new SemicircularPath(2000, 2000, 500, 500, 1, 1.0, 0.15, 90),
+				sem4 = new SemicircularPath(2000, 2000, 500, 500, 1, 1.0, 0.15, 90);
+		for (int i = 0; i < 40000; ++i) {
 			System.out.println(i);
 			g.setColor(Color.WHITE);
 			Point p = sem.update(10);
@@ -84,8 +73,7 @@ public class Squeegee2 {
 
 		}
 
-		File outputfile = new File("C:\\Users\\Maximilian\\Desktop\\image.png");
-		ImageIO.write(im, "png", outputfile);
+		ImageIO.write(im, "png", new File("C:\\Users\\Maximilian\\Desktop\\image.png"));
 
 	}
 
